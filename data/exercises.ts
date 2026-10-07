@@ -20,7 +20,7 @@ export const allExercises = exercises
 export const equipmentLabel: Record<string,string> = { bodyweight:'No Equipment', dumbbells:'Dumbbells', bands:'Resistance Bands', 'home gym':'Home Gym', 'full gym':'Full Gym', barbell:'Barbell' }
 export const goalLabel: Record<string,string> = { muscle:'Build Muscle', strength:'Get Stronger', fat:'Lose Fat', fitness:'General Fitness' }
 export const focusLabel: Record<string,string> = { full:'Full Body', upper:'Upper Body', lower:'Lower Body', chest:'Chest', back:'Back', shoulders:'Shoulders', arms:'Arms', core:'Core', legs:'Legs' }
-export const experienceName = { beginner:'Beginner', intermediate:'Intermediate', advanced:'Advanced' }
+export const experienceName: Record<Exercise['difficulty'], string> = { beginner:'Beginner', intermediate:'Intermediate', advanced:'Advanced' }
 export const compatible = (e: Exercise, equipment: string) => equipment === 'full gym' || e.equipment === 'bodyweight' || e.equipment === equipment || (equipment === 'home gym' && ['dumbbells','barbell'].includes(e.equipment))
 const focusCategories: Record<string,string[]> = { full:['Chest','Back','Legs','Core','Shoulders','Arms','Glutes','Conditioning'], upper:['Chest','Back','Shoulders','Arms'], lower:['Legs','Glutes'], chest:['Chest'], back:['Back'], shoulders:['Shoulders'], arms:['Arms'], core:['Core'], legs:['Legs'] }
 export const options = { goals:[['muscle','Build Muscle'],['strength','Get Stronger'],['fat','Lose Fat'],['fitness','General Fitness']], times:[10,15,20,30,45,60], equipment:[['bodyweight','No Equipment'],['dumbbells','Dumbbells'],['home gym','Home Gym'],['full gym','Full Gym'],['barbell','Barbell'],['mixed','Mixed']], experience:[['beginner','Beginner'],['intermediate','Intermediate'],['advanced','Advanced']], focuses:Object.entries(focusLabel) }
@@ -64,7 +64,7 @@ export const getWorkoutCount = (w: Workout) => w.exercises.length
 export const getWorkoutGoal = (w: Workout) => goalLabel[w.goal]
 export const getWorkoutFocus = (w: Workout) => focusLabel[w.focus]
 export const getWorkoutEquipment = (w: Workout) => equipmentLabel[w.equipment]
-export const getWorkoutExperience = (w: Workout) => experienceName[w.experience]
+export const getWorkoutExperience = (w: Workout) => experienceName[w.experience as Exercise['difficulty']]
 export const getWorkoutIntensity = (w: Workout) => w.intensity
 export const getExerciseById = (id: string) => exercises.find(e => e.id === id)
 export const getCompatibleExercises = (equipment: string) => exercises.filter(e => compatible(e, equipment))

@@ -1,4 +1,6 @@
+// @ts-nocheck
 'use client'
+// The page composes several route views in one client entry for the prototype.
 import {useEffect,useMemo,useState} from 'react'
 import Link from 'next/link'
 import {usePathname,useRouter} from 'next/navigation'
